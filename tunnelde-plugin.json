@@ -1,0 +1,30 @@
+{
+  "id": "example-plugin",
+  "name": "Example Plugin",
+  "version": "1.0.0",
+  "apiVersion": 1,
+  "runtime": "node",
+  "main": "dist/index.mjs",
+  "description": "A minimal independent Tunnelde plugin.",
+  "author": "YOUR_NAME",
+  "readme": "README.md",
+  "permissions": [],
+  "engines": {
+    "node": ">=22"
+  },
+  "tags": [
+    "developer-tools"
+  ],
+  "commands": [
+    {
+      "id": "hello",
+      "title": "Say hello"
+    }
+  ],
+  "views": [
+    {
+      "id": "main",
+      "title": "Example Plugin"
+    }
+  ]
+}
