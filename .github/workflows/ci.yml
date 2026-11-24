@@ -26,6 +26,8 @@ jobs:
       - run: npm run build
       - run: npm run verify
       - run: npm run package
+      - name: Verify initialized plugin and installed archive
+        run: npm run verify:template
       - uses: actions/upload-artifact@v7
         with:
           name: packages-node-${{ matrix.node }}

@@ -12,7 +12,8 @@
     "test": "node --test tests/*.test.mjs",
     "verify": "npm run check && npm test",
     "package": "tunnelde-plugin package",
-    "publish:release": "tunnelde-plugin publish"
+    "publish:release": "tunnelde-plugin publish",
+    "verify:template": "node scripts/verify-template.mjs"
   },
   "tunnelde": {
     "files": [
