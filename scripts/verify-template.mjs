@@ -7,6 +7,12 @@ import { fileURLToPath } from 'node:url';
 import { inspectArchive, verifyArchive } from '@tunnelde/plugin-sdk/tools';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
+// Generated plugin repositories inherit CI; only an uninitialized template is scaffolded.
+const identity = JSON.parse(await readFile(join(root, 'tunnelde-plugin.json'), 'utf8'));
+if (identity.id !== 'example-plugin') {
+  console.log('Template initialization acceptance skipped for an already initialized plugin.');
+  process.exit(0);
+}
 const temporary = await mkdtemp(join(tmpdir(), 'tunnelde-template-acceptance-'));
 const source = join(temporary, 'source');
 const installed = join(temporary, 'installed');
@@ -21,6 +27,8 @@ try {
   assert.equal(manifest.id, 'template-acceptance');
   assert.equal(manifest.name, 'Template Acceptance');
   assert.deepEqual(manifest.permissions, []);
+  // Inherited CI must also work after the developer initializes their repository.
+  run(['run', 'verify:template']);
   run(['run', 'build']);
   run(['run', 'verify']);
   run(['run', 'package']);
